@@ -24,7 +24,7 @@ from maskLib.utilities import doMirrored
 # wafer setup
 # ===============================================================================
 
-w = m.Wafer('3DMultimodeExample','DXF/',32000,2000,padding=2500,waferDiameter=m.waferDiameters['2in'],sawWidth=200,#sawWidth=m.sawWidths['8A'],
+w = m.Wafer('3DMultimodeExample','DXF/',32000,2000,padding=2500,waferDiameter=m.waferDiameters['4in'],sawWidth=200,#sawWidth=m.sawWidths['8A'],
                 frame=1,solid=0,multiLayer=1,singleChipColumn=True)
 #set wafer properties
 # w.frame: draw frame layer?
@@ -72,7 +72,7 @@ class MultimodeTransmon3D(m.Chip):
         #define the transmon (transmon pads and manhattan junction)
         #these numbers copied from Kevin's files
         jpos =self.centered((-self.width/2 + 2960+58-210-250+500+790+1102+100+648-750-500,0))
-        Transmon3D(self, jpos,padh=215,padw=3000,padw2=3200,leadw=50,leadw2=50,leadh=20,separation=20,jfingerw=jfingerw,**kwargs)
+        Transmon3D(self, jpos,padh=200,padw=4950-750-500,padw2=750+750+500,leadw=85,leadw2=85,leadh=20,separation=20,jfingerw=jfingerw,**kwargs)
         
         #define the alignment mark
         Strip_straight(self,self.centered((-1300-1600+3808+790+943.75,0)),100,w=2000)
@@ -85,7 +85,9 @@ class MultimodeTransmon3D(m.Chip):
 # ===============================================================================
 # generate chips
 # ===============================================================================
-junc_ws = np.array([175,178,180,180,182,185,190,200,205,215,225,235,105,95,145,155])/1000
+# junc_ws = np.array([175,178,180,180,182,185,190,200,205,215,225,235,105,95,145,155])/1000
+junc_ws = np.ones(len(w.chips))*175/1000
+
         
         
 #this will set the default chip for the wafer, filling the chip buffer with this chip
